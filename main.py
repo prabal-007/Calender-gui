@@ -1,6 +1,13 @@
 from tkinter import *
 import calendar
+from datetime import datetime 
 
+def tody():
+    month = datetime.now().month
+    year = datetime.now().year
+    cal = calendar.month(year,month)
+    screen.insert(INSERT,cal)
+    print(month)
 def show():
     year = int(spin2.get())
     mont = int(spin1.get())
@@ -24,5 +31,5 @@ frm1.pack(pady=10)
 Button(text='Show',font='arial 10 bold', command=show).pack(pady=10)
 screen = Text(root, width=30,height=10)
 screen.pack()
-
+tody()
 root.mainloop()
