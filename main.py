@@ -5,7 +5,6 @@ from datetime import datetime
 def today():
     cal = calendar.month(year,month)
     screen.insert(INSERT,cal)
-    print(month)
 def show():
     year = int(spin2.get())
     mont = int(spin1.get())
@@ -14,15 +13,23 @@ def show():
     screen.insert(INSERT,cal)
 
 if __name__ == "__main__":
+    global now
+    global tody
     global month
     global year
     root = Tk()
     root.title('Calender')
     root.geometry('300x350')
     root.configure(background='olive')
-    Label(root,text='Calender',font='Arial 20 bold').pack(pady=10)
+    # Label(root,text='Calender',bg='olive',font='Arial 20 bold').pack(pady=10)
+    date = datetime.now().date
+    tody = datetime.now().day
     month = datetime.now().month
     year = datetime.now().year
+    frm = Frame(root,bg='orange')
+    Label(frm,text='Today',font='arial 12',padx=5).pack(side=LEFT,padx=5,pady=5)
+    Label(frm,text=f' {tody} / {month} / {year} ',font='arial 12').pack(side=LEFT,padx=5)
+    frm.pack(pady=15)
     frm1 = Frame(root)
     Label(frm1,text='Month',font='arial 12 bold').pack(side=LEFT)
     var1 = IntVar()
@@ -39,4 +46,8 @@ if __name__ == "__main__":
     screen = Text(root, width=20,height=8,padx='20',pady='5')
     screen.pack()
     today()
+    endfrm = Frame(root,bg='orange')
+    Label(endfrm,text="By Starkk's", bg='orange').pack(side=RIGHT)
+    Label(endfrm,text='©by stk.Cal.0.1').pack(side=LEFT)
+    endfrm.pack(side=BOTTOM, fill=X)
     root.mainloop()
